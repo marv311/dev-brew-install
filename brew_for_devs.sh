@@ -33,6 +33,7 @@ for service in $(echo $services | tr ',' ' '); do
         1)
             echo "Installing Git"
             brew install git
+            echo "Git installed successfully!"
             ;;
         2)
             echo "Installing Node"
@@ -41,10 +42,12 @@ for service in $(echo $services | tr ',' ' '); do
             echo 'export PATH="/opt/homebrew/opt/node@20/bin:$PATH"' >> ~/.zshrc
             echo 'export LDFLAGS="-L/opt/homebrew/opt/node@20/lib"' >> ~/.zshrc
             echo 'export CPPFLAGS="-I/opt/homebrew/opt/node@20/include"' >> ~/.zshrc
+            echo "Node installed successfully!"
             ;;
         3)
             echo "Installing PHP"
             brew install php@8.3
+            echo "PHP installed successfully!"
             ;;
         4)
             echo "Installing MySQL"
@@ -56,24 +59,30 @@ for service in $(echo $services | tr ',' ' '); do
             echo "Installing Composer"
             echo 'export PATH="/usr/local/opt/composer/bin:$PATH"' >> ~/.zshrc
             brew install composer
+            echo "Composer installed successfully!"
             ;;
         6)
             echo "Installing Vue CLI"
             npm install -g @vue/cli
+            echo "Vue CLI installed successfully!"
             ;;
         7)
             echo "Installing Google Cloud SDK"
             brew install --cask google-cloud-sdk
+            echo "Google Cloud SDK installed successfully!"
+            echo "Make sure to authenticate with gcloud auth login"
+            gcloud auth login
             ;;
         8)
             echo "Installing Google SQL Proxy"
-            curl -o cloud-sql-proxy https://storage.googleapis.com/cloud-sql-connectors/cloud-sql-proxy/v2.10.1/cloud-sql-proxy.darwin.arm64
-            chmod +x cloud_sql_proxy
-            mv cloud_sql_proxy ~/cloud_sql_proxy
+            gcloud components install cloud_sql_proxy
+            echo "Make sure to authenticate with gcloud auth application-default login"
+            echo "Then run the proxy with cloud_sql_proxy -instances=<INSTANCE_CONNECTION_NAME>=tcp:3306"
             ;;
         9)
             echo "Installing Nuxt3 and Yarn"
             npm install -g nuxt yarn
+            echo "Nuxt3 and Yarn installed successfully!"
             ;;
         10)
             echo "Creating SSH keys for Bitbucket"
@@ -88,3 +97,6 @@ for service in $(echo $services | tr ',' ' '); do
             ;;
     esac
 done
+
+# Reload the shell profile
+source ~/.zshrc
