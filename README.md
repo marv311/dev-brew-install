@@ -7,6 +7,9 @@ To user the scrip you will need to make the script executable running the follow
 
 `chmod +x brew_for_devs.sh`
 
+To run the script in your terminal
+`./brew_for_devs.sh`
+
 ### What does this install?
 
     - Node 20
