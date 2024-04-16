@@ -3,17 +3,9 @@
 # Navigate to the home directory
 cd ~
 
-# Install Homebrew
-echo "Installing Homebrew"
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-echo "Homebrew installed successfully!"
-echo 'export PATH=/opt/homebrew/bin:$PATH' >> ~/.zshrc
-
-# Reload the shell profile
-source ~/.zshrc
-
 # Prompt user for services to install
 echo "Which services would you like to install?"
+echo "0. Homebrew"
 echo "1. Git"
 echo "2. Node 20"
 echo "3. PHP 8.3"
@@ -30,6 +22,13 @@ read -p "Enter the numbers of the services you want to install (comma-separated)
 # Install selected services using Homebrew
 for service in $(echo $services | tr ',' ' '); do
     case $service in
+        0)
+            echo "Installing Homebrew"
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+            echo "Homebrew installed successfully!"
+            echo 'export PATH=/opt/homebrew/bin:$PATH' >> ~/.zshrc
+            source ~/.zshrc
+            ;;
         1)
             echo "Installing Git"
             brew install git
