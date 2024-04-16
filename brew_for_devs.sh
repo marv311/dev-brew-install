@@ -7,8 +7,7 @@ cd ~
 echo "Installing Homebrew"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 echo "Homebrew installed successfully!"
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
-eval "$(/opt/homebrew/bin/brew shellenv)"
+echo 'export PATH=/opt/homebrew/bin:$PATH' >> ~/.zshrc
 
 # Reload the shell profile
 source ~/.zshrc
@@ -38,6 +37,10 @@ for service in $(echo $services | tr ',' ' '); do
         2)
             echo "Installing Node"
             brew install node@20
+            echo 'export PATH="/opt/homebrew/opt/node@20/bin:$PATH"' >> ~/.zshrc
+            echo 'export PATH="/opt/homebrew/opt/node@20/bin:$PATH"' >> ~/.zshrc
+            echo 'export LDFLAGS="-L/opt/homebrew/opt/node@20/lib"' >> ~/.zshrc
+            echo 'export CPPFLAGS="-I/opt/homebrew/opt/node@20/include"' >> ~/.zshrc
             ;;
         3)
             echo "Installing PHP"
@@ -45,10 +48,13 @@ for service in $(echo $services | tr ',' ' '); do
             ;;
         4)
             echo "Installing MySQL"
+            echo 'export PATH="/opt/homebrew/opt/php@8.3/bin:$PATH"' >> ~/.zshrc
+            echo 'export PATH="/opt/homebrew/opt/php@8.3/sbin:$PATH"' >> ~/.zshrc
             brew install mysql@8.3
             ;;
         5)
             echo "Installing Composer"
+            echo 'export PATH="/usr/local/opt/composer/bin:$PATH"' >> ~/.zshrc
             brew install composer
             ;;
         6)
