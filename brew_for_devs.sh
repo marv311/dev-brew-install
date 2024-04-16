@@ -1,4 +1,6 @@
 #!/bin/bash
+# Navigate to the home directory
+cd ~
 
 # Install Homebrew
 echo "Installing Homebrew"
